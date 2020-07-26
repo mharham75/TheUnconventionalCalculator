@@ -25,37 +25,52 @@ function writeToLog(opertaion,previousResult,number,result)
     console.log(logEntries);
 }
 
-function add() {
+function calculateResult(calculationType){
     const enteredNumber = getUserNumberInput();
     const initialResult = currentResult;
-    currentResult = currentResult + enteredNumber ;
-    createAndWriteOutput('+', initialResult, enteredNumber);
-    writeToLog('Add',initialResult,enteredNumber,currentResult);
-    
+    let mathOperator;
+    if(calculationType === 'Add')
+    {
+        currentResult = currentResult + enteredNumber ;
+        mathOperator = '+' ;
+    }
+
+    else if(calculationType === 'Subtract')
+    {
+        currentResult -= enteredNumber ;  
+        mathOperator = '-' ;
+    }
+
+    else if(calculationType === 'Multiply')
+    {
+        currentResult *= enteredNumber ;  
+        mathOperator = '*' ;
+    }
+
+    else
+    {
+        currentResult /= enteredNumber ;  
+        mathOperator = '/' ;
+    }
+
+    createAndWriteOutput(mathOperator, initialResult, enteredNumber);
+    writeToLog(calculationType,initialResult,enteredNumber,currentResult);
+}
+
+function add() {
+    calculateResult('Add');
 }
 
 function subtract() {
-    const enteredNumber = getUserNumberInput();
-    const initialResult = currentResult;
-    currentResult = currentResult - enteredNumber ;
-    createAndWriteOutput('-', initialResult, enteredNumber);
-    writeToLog('Subtract',initialResult,enteredNumber,currentResult);
+    calculateResult('Subtract');
 }
 
 function multiply() {
-    const enteredNumber = getUserNumberInput();
-    const initialResult = currentResult;
-    currentResult = currentResult * enteredNumber ;
-    createAndWriteOutput('*', initialResult, enteredNumber);
-    writeToLog('Product',initialResult,enteredNumber,currentResult);
+    calculateResult('Multiply');
 }
 
 function divide() {
-    const enteredNumber = getUserNumberInput();
-    const initialResult = currentResult;
-    currentResult = currentResult / enteredNumber ;
-    createAndWriteOutput('/', initialResult, enteredNumber);
-    writeToLog('Division',initialResult,enteredNumber,currentResult);
+    calculateResult('Divide');
 }
 
 
