@@ -2,7 +2,7 @@ const defualtResult = 0;
 
 let currentResult = defualtResult;
 
-let assumeArray = [];
+let logEntries = [];
 
 function getUserNumberInput(){
     return parseInt(userInput.value);
@@ -13,13 +13,25 @@ function createAndWriteOutput(operator,resultBeforeCalc, calcNumber){
     outputResult(currentResult, calDescription);
 }
 
+function writeToLog(opertaion,previousResult,number,result)
+{
+    logEntry = {
+        opertaion: opertaion,
+        previosResult: previousResult ,
+        number: number,
+        result: result 
+    };
+    logEntries.push(logEntry);
+    console.log(logEntries);
+}
+
 function add() {
     const enteredNumber = getUserNumberInput();
     const initialResult = currentResult;
     currentResult = currentResult + enteredNumber ;
     createAndWriteOutput('+', initialResult, enteredNumber);
-    assumeArray.push(enteredNumber);
-    console.log(assumeArray[0]);
+    writeToLog('Add',initialResult,enteredNumber,currentResult);
+    
 }
 
 function subtract() {
@@ -27,6 +39,7 @@ function subtract() {
     const initialResult = currentResult;
     currentResult = currentResult - enteredNumber ;
     createAndWriteOutput('-', initialResult, enteredNumber);
+    writeToLog('Subtract',initialResult,enteredNumber,currentResult);
 }
 
 function multiply() {
@@ -34,6 +47,7 @@ function multiply() {
     const initialResult = currentResult;
     currentResult = currentResult * enteredNumber ;
     createAndWriteOutput('*', initialResult, enteredNumber);
+    writeToLog('Product',initialResult,enteredNumber,currentResult);
 }
 
 function divide() {
@@ -41,6 +55,7 @@ function divide() {
     const initialResult = currentResult;
     currentResult = currentResult / enteredNumber ;
     createAndWriteOutput('/', initialResult, enteredNumber);
+    writeToLog('Division',initialResult,enteredNumber,currentResult);
 }
 
 
